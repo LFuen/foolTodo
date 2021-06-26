@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-
 import logo from './logo.svg';
-
+import Todo from './Todo';
+import Completed from './Completed';
+import {TodoItem, CompletedTodo, TodoDiv} from '../Styled';
 import './App.css';
 
 class App extends Component {
   state = {
-    method: 'GET',
-    lastRequest: '',
-
-    id: '',
     title: '',
-    order: '',
-    completed: false,
 
     response: [],
   };
@@ -73,12 +68,8 @@ class App extends Component {
   };
   
   render() {
-    const { method, lastRequest, id, title, order, completed, response } = this.state;
 
-    const shouldDisplayIdInput = method !== "POST";           // if method is NOT post, boolean is TRUE 
-    const shouldDisplayTitleInput = method === "POST" || method === "PATCH";    // if method IS POST or PATCH, boolean TRUE 
-    const shouldDisplayOrderInput = method === "POST" || method === "PATCH";    // if method IS POST or PATCH, boolean TRUE 
-    const shouldDisplayCompletedInput = method === "PATCH";   // if method is PATCH, boolean TRUE
+    const {response } = this.state;
 
     return (
       <div className="App">
@@ -90,52 +81,10 @@ class App extends Component {
         </header>
 
         <form onSubmit={this.handleSubmit} id='form'>
-
-            <h3>Send to Server:</h3>
-
-          <select value={method} onChange={this.changeMethod}>
-            <option value="GET">Get</option>
-            <option value="POST">Post</option>
-            <option value="PATCH">Patch</option>
-            <option value="DELETE">Delete</option>
-          </select>
-          <input
-            disabled={!shouldDisplayIdInput}            // if method is NOT POST, this should be disabled
-            type="text"
-            placeholder="id (int)"
-            value={id}
-            onChange={e => this.setState({ id: e.target.value })}
-          />
-          <input
-            disabled={!shouldDisplayTitleInput}         // if method IS POST OR PATCH, then this should be disabled
-            type="text"
-            placeholder="title (string)"
-            value={title}
-            onChange={e => this.setState({ title: e.target.value })}
-          />
-          <input
-            disabled={!shouldDisplayOrderInput}             // if method IS PATCH, then this should be disabled
-            type="text"
-            placeholder="order (int)"
-            value={order}
-            onChange={e => this.setState({ order: e.target.value })}
-          />
-
-          <label>
-            Completed?
-            <input
-              display="inline-block"
-              disabled={!shouldDisplayCompletedInput}         // if method IS PATCH, then this should be disabled
-              type="checkbox"
-              value={completed}
-              onChange={e => this.setState({ completed: e.target.checked })}
-            />
-          </label>
-
+          <input placeholder='Todo Item'/>
           <button type="submit">Submit</button>
 
         </form>
-        <h3>{`Last sent: ${lastRequest}`}</h3>
         <section id='results'>
           <p>
             {
@@ -153,9 +102,16 @@ class App extends Component {
             }
           </p>
         </section>
-        <section>
-            
-        </section>
+        <TodoDiv>
+          <TodoItem>
+              <h3>Todo</h3>
+              <Todo />
+          </TodoItem>
+          <CompletedTodo>
+              <h3>Completed</h3>
+              <Completed />
+          </CompletedTodo>
+        </TodoDiv>
       </div>
     );
   }
