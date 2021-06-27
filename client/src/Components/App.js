@@ -63,7 +63,7 @@ class App extends Component {
 
         <Submit postTodo={this.postTodo}/>
         <TodoDiv>
-          <Todo onCompleted={this.onCompleted} todos={this.state.todos} noMore={this.deleting}/>
+          <Todo onCompleted={this.onCompleted} todos={this.state.todos} deleting={this.deleting}/>
           <Completed todos={this.state.todos} deleting={this.deleting}/>
         </TodoDiv>
       </div>

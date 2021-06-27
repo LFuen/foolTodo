@@ -4,21 +4,21 @@ import { TodoItem, Individual } from './Styled';
 
 class Todo extends Component {
 
-      onCompleted = async (e, id) => {
-        e.preventDefault();
+  onCompleted = async (e, id) => {
+    e.preventDefault();
 
-        let response = await fetch(`http://localhost:5000/${id}`, {
-          method: "PATCH",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            completed: true
-          }) 
-        }).then((results) => {
-          this.props.onCompleted(id)
-      })
-      };
+    let response = await fetch(`http://localhost:5000/${id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        completed: true
+      }) 
+    }).then((results) => {
+      this.props.onCompleted(id)
+  })
+  };
 
     deleting = async (e, id) => {
       e.preventDefault();

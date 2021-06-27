@@ -13,14 +13,19 @@ class Submit extends Component {
         this.setState({ title: event.target.value});
         };
 
-        newOrder = event => {
-            this.setState({ order: event.target.value});
-            };
+    newOrder = event => {
+        this.setState({ order: event.target.value});
+        };
+
+    clearForm = (e) => {
+        e.preventDefault();
+        this.state.title = '';
+        this.state.order = '';
+    }
 
     handleSubmit = async e => {
         e.preventDefault();
 
-        // Submit post request to API
         let response = await fetch('http://localhost:5000/', {
             method: "POST",
             headers: {
@@ -35,8 +40,8 @@ class Submit extends Component {
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     ).then((results) => {
         this.props.postTodo(results)
-    })
-    ;
+    });
+
     };
 
     render() {
