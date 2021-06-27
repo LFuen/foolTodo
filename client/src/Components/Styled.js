@@ -3,22 +3,24 @@ import styled, {keyframes} from 'styled-components'
 const TodoItem = styled.section`
     display: inline-block;
     border: 4px solid black;
-    background-color: red;
+    background-color: #FE5F55;
     margin: 10px;
     padding: 5px;
     width: 50%;
+    border-radius: 10px;
 `
 const CompletedTodo = styled.section`
     display: inline-block;
     border: 4px solid black;
-    background-color: green;
+    background-color: #94C9A9;
     margin: 10px;
     padding: 5px;
     width: 50%;
+    border-radius: 10px;
 `
 const TodoDiv = styled.div`
-    display: inline-block;
-    width: 80%;
+    display: flex;
+    justify-content: space-around;
 `
 
 export {
