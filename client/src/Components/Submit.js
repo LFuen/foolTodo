@@ -19,8 +19,10 @@ class Submit extends Component {
 
     clearForm = (e) => {
         e.preventDefault();
-        this.state.title = '';
-        this.state.order = '';
+        this.setState({
+            title: '',
+            order: ''
+        })
     }
 
     handleSubmit = async e => {
@@ -48,9 +50,9 @@ class Submit extends Component {
         return(
         <SubmitDiv>
             <form onSubmit={this.handleSubmit} id='form' >
-                <input onChange={this.newTitle} placeholder='Todo Item' required/>
-                <input onChange={this.newOrder} placeholder='Order number' type='number' required/>
-                <button type="submit">Submit</button>
+                <input defaultValue={this.state.title} onChange={this.newTitle} placeholder='Todo Item' required/>
+                <input defaultValue={this.state.order} onChange={this.newOrder} placeholder='Order number' type='number' required/>
+                <button type="submit" onClick={this.clearForm}>Submit</button>
             </form>
         </SubmitDiv>
         )
