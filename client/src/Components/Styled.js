@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components'
+import styled from 'styled-components'
 
 const TodoItem = styled.section`
     display: inline-block;
@@ -9,6 +9,13 @@ const TodoItem = styled.section`
     width: 50%;
     border-radius: 10px;
 `
+const Individual = styled.div`
+    background-color: grey;
+    border: 2px solid whitesmoke;
+    margin: 20px;
+    padding: 10px;
+`
+
 const CompletedTodo = styled.section`
     display: inline-block;
     border: 4px solid black;
@@ -18,13 +25,25 @@ const CompletedTodo = styled.section`
     width: 50%;
     border-radius: 10px;
 `
+const IndividualComp = styled.div`
+    background-color: whitesmoke;
+    border: 2px solid grey;
+    margin: 20px;
+`
+
 const TodoDiv = styled.div`
     display: flex;
     justify-content: space-around;
+`
+const SubmitDiv = styled.div`
+    display: inline-block;
 `
 
 export {
     TodoItem,
     CompletedTodo,
-    TodoDiv
+    TodoDiv,
+    SubmitDiv,
+    Individual,
+    IndividualComp
 }

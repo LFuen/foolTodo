@@ -7,6 +7,7 @@ function createToDo(req, data) {
     id = data.id;
 
   return {
+    id: id,
     title: data.title,
     order: data.order,
     completed: data.completed || false,
@@ -26,12 +27,14 @@ async function getTodo(req, res) {
 
 async function postTodo(req, res) {
   const created = await todos.create(req.body.title, req.body.order);
+  console.log(createToDo(req, created), "IN THE SERVER")
   return res.send(createToDo(req, created));
 }
 
 async function patchTodo(req, res) {
   const patched = await todos.update(req.params.id, req.body);
-  return res.send(createToDo(req, patched));
+  // return res.send(createToDo(req, patched));
+  return res.status(200).send();
 }
 
 async function deleteAllTodos(req, res) {

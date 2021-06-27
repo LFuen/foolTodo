@@ -1,80 +1,59 @@
 import React, {Component} from 'react'
-import { TodoItem } from './Styled';
+import { TodoItem, Individual } from './Styled';
 
 
 class Todo extends Component {
 
-    state = {
-        title: '',  
-        response: [],
-      };
-      
-      handleSubmit = async e => {
+      onCompleted = async (e, id) => {
         e.preventDefault();
-        let { method, id, title, order, completed } = this.state;
-        
-        let request = {
-          method,
+
+        let response = await fetch(`http://localhost:5000/${id}`, {
+          method: "PATCH",
           headers: {
-            'Content-Type': 'application/json',
-          }
-        };
-    
-        // Undefined ensures not changing to empty string.
-        title = title ? title : undefined;
-        order = order ? Number(order) : undefined;
-    
-        let response;
-        if (process.env.NODE_ENV === "development" && method === "GET" && id === '') {
-          response = await fetch('http://localhost:5000/', request);
-        } else {
-          response = await fetch(`/${id}`, request);
-        }
-    
-        const contentType = response.headers.get('content-type');
-    
-        let body;
-        if (contentType && contentType.includes('application/json')) {
-          body = await response.json();
-        } else if (contentType && contentType.includes('text/html')) {
-          body = await response.text();
-        }
-    
-        if (response.status !== 200) {
-          console.log(body);
-          this.setState({ response: [{ status: response.status, message: body }] });
-          return;
-        }
-
-        if (!Array.isArray(body))
-          body = Array(body);
-      
-        this.setState({ response: body });
-      };
-    
-      changeMethod = event => {
-        this.setState({ method: event.target.value });
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            completed: true
+          }) 
+        }).then((results) => {
+          this.props.onCompleted(id)
+      })
       };
 
+    deleting = async (e, id) => {
+      e.preventDefault();
+
+      let response = await fetch(`http://localhost:5000/${id}`, {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((results) => {
+        this.props.deleting(id)
+    });
+  };
 
     render(){
-
-        const {response } = this.state;
-
+        const {todos} = this.props;
+        console.log(todos, "THESE ARE TODOS")
         return(
-            <TodoItem>
-                <h3>Todo</h3>
-                <form onSubmit={this.handleSubmit} id='form'>
-                    <input placeholder='Todo Item'/>
-                    <button type="submit">Submit</button>
-                </form>
-                <article>
-                    <p>{}</p>
-                </article>
-            </TodoItem>
-        )
+          <TodoItem>
+            <h3>TODO</h3>
+            {todos.map(todo => {
+                if(todo.completed === false){
+                    return (
+                    <Individual key={todo.id}>
+                      <h3>{todo.title}</h3>
+                      <input type='checkbox' onChange={(e) => this.onCompleted(e, todo.id)}/>
+                      <br/> 
+                      <button onClick={(e) => this.deleting(e, todo.id)}>Delete</button>       
+                    </Individual>);
+                }})}     
+          </TodoItem>
+        );
+      }
     }
-}
 
 
 export default Todo
