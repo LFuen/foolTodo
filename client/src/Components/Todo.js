@@ -36,7 +36,6 @@ class Todo extends Component {
 
     render(){
         const {todos} = this.props;
-        console.log(todos, "THESE ARE TODOS")
         return(
           <TodoItem>
             <h3>TODO</h3>

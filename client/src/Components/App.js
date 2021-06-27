@@ -23,7 +23,6 @@ class App extends Component {
     var response = await fetch('http://localhost:5000/', request);
     let json = await response.json();
     this.setState({todos: json});
-    console.log(json);
   }
 
   onCompleted = (id) => {
@@ -35,7 +34,6 @@ class App extends Component {
   }
 
   postTodo = (input) => {
-    console.log(input, "INPUT IN APP.JS")
     this.setState({
       todos: [...this.state.todos, input]
     })

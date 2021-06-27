@@ -27,7 +27,6 @@ async function getTodo(req, res) {
 
 async function postTodo(req, res) {
   const created = await todos.create(req.body.title, req.body.order);
-  console.log(createToDo(req, created), "IN THE SERVER")
   return res.send(createToDo(req, created));
 }
 
