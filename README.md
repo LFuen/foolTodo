@@ -1,4 +1,4 @@
-## This project is run on your local machine database.
+# This project is run on your local machine database.
 
 1. With this project you can add items to a 'Todo' list and mark them as completed.
 
