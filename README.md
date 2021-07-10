@@ -1,3 +1,12 @@
+## This project is run on your local machine database.
+
+1. With this project you can add items to a 'Todo' list and mark them as completed.
+
+2. Once marked completed, the items will then move into a 'Completed' column.
+
+3. Items in either column 'Todo' and 'Completed' can also be deleted.
+
+
 # todo-backend-express-knex
 
 This is an implementation of [Todo-Backend](http://todobackend.com/) using Node and Express for the server, Knex for database migrations and query building, and some ES6+ features such as async/await. By default, this project configures Knex to save to PostgreSQL.

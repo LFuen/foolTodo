@@ -17,7 +17,7 @@
     "jest": "^24.9.0",
     "knex": "^0.95.6",
     "lodash": "^4.17.15",
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.8",
     "pg": "8.0",
     "sqlite3": "https://github.com/mapbox/node-sqlite3/tarball/master",
     "supertest": "^4.0.2"
